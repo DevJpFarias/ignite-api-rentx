@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { SpecificationsRepository } from '../modules/cars/Repositories/SpecificationsRepository';
-import { CreateCategoryService } from '../modules/cars/Services/CreateCategoryService';
+import { CreateCategoryUseCase } from '../modules/cars/userCases/CreateCategory/CreateCategoryUseCase';
 
 const specificationsRoutes = Router();
 
@@ -9,7 +9,7 @@ const specificationsRepository = new SpecificationsRepository();
 specificationsRoutes.post("/", (request, response) => {
     const { name, description } = request.body;
 
-    const createSpecificationService = new CreateCategoryService(specificationsRepository);
+    const createSpecificationService = new CreateCategoryUseCase(specificationsRepository);
 
     createSpecificationService.execute({ name, description });
 
