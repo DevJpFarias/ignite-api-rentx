@@ -7,7 +7,7 @@ class PostgresCategoriesRepository implements ICategoriesRepository {
         console.log(name)
         throw null;
     }
-    list(): Category[] {
+    list(): Category[]{
         throw null;
     }
     create({name, description}: ICreateCategoryDTO): void {

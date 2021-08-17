@@ -9,9 +9,9 @@ class CategoriesRepository implements ICategoriesRepository{
         this.categories = []
     }
 
-    create({name, description}: ICreateCategoryDTO):void {
+    create({name, description}: ICreateCategoryDTO): Category {
         const category = new Category();
-    
+
     Object.assign(category, {
         name,
         description,
@@ -19,6 +19,8 @@ class CategoriesRepository implements ICategoriesRepository{
     })
 
     this.categories.push(category);
+
+    return category;
     }
 
     list(): Category[] {
