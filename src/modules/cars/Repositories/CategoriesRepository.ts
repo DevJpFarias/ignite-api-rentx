@@ -5,31 +5,31 @@ import { ICategoriesRepository,ICreateCategoryDTO } from "./ICategoriesRepositor
 class CategoriesRepository implements ICategoriesRepository{
     private categories: Category[];
 
+    
     constructor () {
         this.categories = []
     }
+    
 
-    create({name, description}: ICreateCategoryDTO): Category {
+    create({name, description}: ICreateCategoryDTO): void {
         const category = new Category();
 
-    Object.assign(category, {
-        name,
-        description,
-        created_at: new Date()
-    })
+        Object.assign(category, {
+            name,
+            description,
+            created_at: new Date()
+        });
 
-    this.categories.push(category);
-
-    return category;
+        this.categories.push(category);
     }
 
     list(): Category[] {
         return this.categories;
     }
 
-    findByName(name: string): Category{
+    findByName(name: string): Category | undefined{
         const category = this.categories.find((category) => category.name === name)
-        throw category;
+        return category;
     }
 };
 
