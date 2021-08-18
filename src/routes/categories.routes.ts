@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { CategoriesRepository } from '../modules/cars/Repositories/CategoriesRepository';
 import { createCategoryController } from '../modules/cars/userCases/CreateCategory';
 import { listCategoriesController } from '../modules/cars/userCases/listCategories';
 
