@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { SpecificationsRepository } from '../modules/cars/Repositories/SpecificationsRepository';
+import { SpecificationsRepository } from '../modules/cars/Repositories/implementations/SpecificationsRepository';
 import { CreateCategoryUseCase } from '../modules/cars/userCases/CreateCategory/CreateCategoryUseCase';
 
 const specificationsRoutes = Router();
