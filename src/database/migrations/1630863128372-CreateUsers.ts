@@ -9,7 +9,7 @@ export class CreateUsers1630863128372 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "uuid"
+                        type: "uuid",
                     },
                     {
                         name: "name",
@@ -36,10 +36,6 @@ export class CreateUsers1630863128372 implements MigrationInterface {
                         name: "isAdmin",
                         type: "boolean",
                         default: false
-                    },
-                    {
-                        name: "avatar",
-                        type: "varchar"
                     },
                     {
                         name: "created_at",
