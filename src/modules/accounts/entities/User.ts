@@ -22,7 +22,7 @@ class User {
     isAdmin: boolean;
 
     @Column()
-    avatar: string | null;
+    avatar: string;
 
     @CreateDateColumn()
     created_at: Date;
