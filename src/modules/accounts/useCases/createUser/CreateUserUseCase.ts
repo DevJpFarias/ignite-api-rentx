@@ -1,4 +1,4 @@
-import { AppError } from '@errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import { hash } from 'bcrypt';
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
