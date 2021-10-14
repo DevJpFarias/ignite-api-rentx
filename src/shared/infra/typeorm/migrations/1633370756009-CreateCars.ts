@@ -1,4 +1,3 @@
-import { networkInterfaces } from "os";
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
 export class CreateCars1633370756009 implements MigrationInterface {
