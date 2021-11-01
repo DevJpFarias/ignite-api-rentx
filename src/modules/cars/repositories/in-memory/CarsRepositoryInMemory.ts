@@ -1,6 +1,6 @@
 import {
     ICreateCarDTO
-} from '@modules/cars/dtos/CreateCarDTO';
+} from '@modules/cars/dtos/ICreateCarDTO';
 import {
     Car
 } from '@modules/cars/infra/typeorm/entities/Car';
@@ -18,7 +18,8 @@ class CarsRepositoryInMemory implements ICarsRepository {
         description,
         fine_amount,
         license_plate,
-        name
+        name,
+        specifications
     }: ICreateCarDTO): Promise <Car> {
         const car = new Car()
 
@@ -29,7 +30,8 @@ class CarsRepositoryInMemory implements ICarsRepository {
             description,
             fine_amount,
             license_plate,
-            name
+            name,
+            specifications
         })
         
         this.cars.push(car)
