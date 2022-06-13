@@ -2,16 +2,21 @@ import { Repository, getRepository } from 'typeorm';
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
 import { User } from '@modules/accounts/infra/typeorm/entities/User';
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+import { database } from '@shared/infra/typeorm/helpers/db-connection-helper';
 
 
 class UsersRepository implements IUsersRepository {
     private repository: Repository<User>;
 
     constructor () {
-        this.repository = getRepository(User)
+        this.repository = database.getRepository(User)
     }
     async findById(id: string): Promise<User> {
-        const user = await this.repository.findOne(id)
+        const user = await this.repository.findOne({
+            where: {
+                id
+            }
+        })
         return user!;
     }
 
@@ -29,7 +34,11 @@ class UsersRepository implements IUsersRepository {
     }
     
     async findByEmail(email: string): Promise<User> {
-        const user = await this.repository.findOne({email})
+        const user = await this.repository.findOne({
+            where: {
+                email
+            }
+        })
         return user!;
     }
 }

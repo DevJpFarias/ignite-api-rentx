@@ -13,13 +13,14 @@ import {
 import {
     Car
 } from '../entities/Car';
+import { database } from '@shared/infra/typeorm/helpers/db-connection-helper';
 
 
 class CarsRepository implements ICarsRepository {
-    private repository: Repository < Car >
+    private repository: Repository <Car>
 
         constructor() {
-            this.repository = getRepository(Car)
+            this.repository = database.getRepository(Car)
         }
 
     async create({
@@ -83,7 +84,11 @@ class CarsRepository implements ICarsRepository {
     }
 
     async findById(id: string): Promise<Car> {
-        const car = await this.repository.findOne(id)
+        const car = await this.repository.findOne({
+            where: {
+                id
+            }
+        })
 
         return car!
     }

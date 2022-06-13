@@ -1,14 +1,15 @@
-import { getRepository } from 'typeorm';
+import { In } from 'typeorm';
 import { Repository } from 'typeorm';
 import { Specification } from "@modules/cars/infra/typeorm/entities/Specification";
 import { ISpecificationsRepository, ICreateSpecificationDTO } from "@modules/cars/repositories/ISpecificationRepository";
+import { database } from '@shared/infra/typeorm/helpers/db-connection-helper';
 
 
 class SpecificationsRepository implements ISpecificationsRepository {
     private repository: Repository<Specification>;
 
     constructor () {
-        this.repository = getRepository(Specification);
+        this.repository = database.getRepository(Specification);
     }
 
     async create({ name, description }: ICreateSpecificationDTO): Promise<Specification> {
@@ -30,7 +31,11 @@ class SpecificationsRepository implements ISpecificationsRepository {
     }
 
     async findByIds(ids: string[]): Promise<Specification[]> {
-        const specifications = await this.repository.findByIds(ids)
+        const id_array = In([ids])
+
+        const specifications = await this.repository.findBy({
+            id:  id_array 
+        })
 
         return specifications
     }
