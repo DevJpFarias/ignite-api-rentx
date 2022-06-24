@@ -17,6 +17,5 @@ export const PostgresDataSource = new DataSource({
 	migrations: [
 		'./src/shared/infra/typeorm/migrations/*.ts'
 	],
-	synchronize: true,
-    logging: true
+	synchronize: true
 })

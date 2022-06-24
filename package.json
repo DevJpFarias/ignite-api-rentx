@@ -9,8 +9,7 @@
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "test": "cross-env NODE_ENV=test jest",
     "seed:admin": "ts-node-dev -r tsconfig-paths/register src/shared/infra/typeorm/seed/admin.ts",
-    "seed:admin-test": "cross-env NODE_ENV=test ts-node-dev -r tsconfig-paths/register src/shared/infra/typeorm/seed/admin.ts",
-    "create-db-test": "cross-env NODE_ENV=test ts-node-dev -r tsconfig-paths/register src/shared/infra/typeorm/helpers/db-create-helper.ts"
+    "seed:admin-test": "cross-env NODE_ENV=test ts-node-dev -r tsconfig-paths/register src/shared/infra/typeorm/seed/admin.ts"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

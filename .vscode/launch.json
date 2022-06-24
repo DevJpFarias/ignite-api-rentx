@@ -14,6 +14,33 @@
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
-        }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Application",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "dev"],
+            "port": 9229,
+            "internalConsoleOptions": "openOnSessionStart"
+          },
+          {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Application Test",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "dev-test"],
+            "port": 9229,
+            "internalConsoleOptions": "openOnSessionStart"
+          },
+          {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Tests",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "test"],
+            "port": 9229,
+            "internalConsoleOptions": "openOnSessionStart"
+          },
     ]
 }
