@@ -72,7 +72,8 @@ class RentalsRepository implements IRentalsRepository {
         const rentals = await this.repository.find({
             where: {
                 user_id: user_id
-            }
+            },
+            relations: ["car"]
         })
 
         return rentals
