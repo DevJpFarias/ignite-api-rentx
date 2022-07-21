@@ -1,6 +1,7 @@
 
 
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
+import { ICreateRentalDTO } from '@modules/rentals/dtos/ICreateRentalDTO';
 import { Rental } from '@modules/rentals/infra/typeorm/entities/Rental';
 import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository"
 import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
@@ -8,10 +9,10 @@ import { AppError } from "@shared/errors/AppError"
 import { inject, injectable } from 'tsyringe';
 
 interface IRequest {
-    user_id: string;
     car_id: string;
+    user_id: string;
     expected_return_date: Date;
-}
+  }
 
 @injectable()
 class CreateRentalUseCase {
@@ -43,12 +44,18 @@ class CreateRentalUseCase {
 
         const compare = this.dateProvider.compareInHours(dateNow, expected_return_date)
 
-        if(compare < minimumHour) throw new AppError("Invalid return time!") 
+        if(compare < minimumHour) throw new AppError("Invalid return time!")
+
+        const car = await this.carsRepository.findById(car_id)
+
+        if(!car) throw new AppError('Car not found!')
 
         const rental = await this.rentalsRepository.create({
             user_id,
             car_id,
-            expected_return_date
+            expected_return_date,
+            start_date: dateNow,
+            
         })
 
         await this.carsRepository.updateAvailable(car_id, false)

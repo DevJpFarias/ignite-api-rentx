@@ -15,13 +15,13 @@ class Rental {
     @Column()
     start_date: Date
 
-    @Column()
+    @Column({ nullable: true })
     end_date: Date
 
     @Column()
     expected_return_date: Date
 
-    @Column()
+    @Column({ nullable: true })
     total: number
 
     @CreateDateColumn()
