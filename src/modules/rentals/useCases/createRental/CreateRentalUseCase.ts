@@ -30,37 +30,36 @@ class CreateRentalUseCase {
         car_id,
         expected_return_date
     }: IRequest): Promise<Rental> {
-        const minimumHour = 24
+      const minimumHour = 24
 
-        const carUnavailable = await this.rentalsRepository.findOpenRentalByCar(car_id)
+      const carUnavailable = await this.rentalsRepository.findOpenRentalByCar(car_id)
 
-        if(carUnavailable) throw new AppError("Car is unavailable")
+      if(carUnavailable) throw new AppError("Car is unavailable")
 
-        const rentalOpenToUser = await this.rentalsRepository.findOpenRentalByUser(user_id)
+      const rentalOpenToUser = await this.rentalsRepository.findOpenRentalByUser(user_id)
 
-        if(rentalOpenToUser) throw new AppError("There's a rental in progress for user!")
+      if(rentalOpenToUser) throw new AppError("There's a rental in progress for user!")
 
-        const dateNow = this.dateProvider.dateNow()
+      const dateNow = this.dateProvider.dateNow()
 
-        const compare = this.dateProvider.compareInHours(dateNow, expected_return_date)
+      const compare = this.dateProvider.compareInHours(dateNow, expected_return_date)
 
-        if(compare < minimumHour) throw new AppError("Invalid return time!")
+      if(compare < minimumHour) throw new AppError("Invalid return time!")
 
-        const car = await this.carsRepository.findById(car_id)
+      const car = await this.carsRepository.findById(car_id)
 
-        if(!car) throw new AppError('Car not found!')
+      if(!car) throw new AppError('Car not found!')
 
-        const rental = await this.rentalsRepository.create({
-            user_id,
-            car_id,
-            expected_return_date,
-            start_date: dateNow,
-            
-        })
+      const rental = await this.rentalsRepository.create({
+        user_id,
+        car_id,
+        expected_return_date,
+        start_date: dateNow,
+      })
 
-        await this.carsRepository.updateAvailable(car_id, false)
+      await this.carsRepository.updateAvailable(car_id, false)
 
-        return rental
+      return rental
     }
 }
 

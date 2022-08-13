@@ -31,8 +31,8 @@
                     }
                   },
                   "example": {
-                      "name": "category name sample",
-                      "description": "category description sample"
+                    "name": "category name sample",
+                     "description": "category description sample"
                   }
               }
             }

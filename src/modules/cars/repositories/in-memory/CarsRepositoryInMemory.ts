@@ -7,6 +7,7 @@ import {
 import {
     ICarsRepository
 } from '@modules/cars/repositories/ICarsRepository';
+import { v4 as uuid } from 'uuid';
 
 
 class CarsRepositoryInMemory implements ICarsRepository {
@@ -19,8 +20,7 @@ class CarsRepositoryInMemory implements ICarsRepository {
         fine_amount,
         license_plate,
         name,
-        specifications,
-        id
+        specifications
     }: ICreateCarDTO): Promise <Car> {
         const car = new Car()
 
@@ -33,7 +33,7 @@ class CarsRepositoryInMemory implements ICarsRepository {
             license_plate,
             name,
             specifications,
-            id
+            id: uuid()
         })
         
         this.cars.push(car)
@@ -64,9 +64,13 @@ class CarsRepositoryInMemory implements ICarsRepository {
         return this.cars.find(car => car.id === id)!
     }
 
-    async updateAvailable(id: string, available: boolean): Promise<void> {
+    async updateAvailable(id: string, available: boolean): Promise<Car> {
         const findIndex = this.cars.findIndex(car => car.id === id)
         this.cars[findIndex].available = available
+
+        const car = this.cars.find(car => car.id === id)
+
+        return car!
     }
 }
 
