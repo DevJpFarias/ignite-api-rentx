@@ -42,5 +42,14 @@
             "port": 9229,
             "internalConsoleOptions": "openOnSessionStart"
           },
+          {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Seed Admin",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "seed:admin"],
+            "port": 9229,
+            "internalConsoleOptions": "openOnSessionStart"
+          }
     ]
 }

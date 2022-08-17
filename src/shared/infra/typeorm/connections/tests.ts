@@ -16,6 +16,5 @@ export const TestsDataSource = new DataSource({
 	entities: [User, Car, CarImage, Category, Specification, Rental],
 	migrations: [
 		'./src/shared/infra/typeorm/migrations/*.ts'
-	],
-	synchronize: true
+	]
 })
