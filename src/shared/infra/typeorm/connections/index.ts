@@ -14,7 +14,7 @@ export const PostgresDataSource = new DataSource({
 	username: 'docker',
 	password: 'ignite',
 	database: 'rentx',
-	entities: [User, UserTokens, Car, CarImage, Category, Specification, Rental],
+	entities: [ User, UserTokens, Car, CarImage, Category, Specification, Rental ],
 	migrations: [
 		'./src/shared/infra/typeorm/migrations/*.ts'
 	]

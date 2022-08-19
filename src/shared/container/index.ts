@@ -18,27 +18,27 @@ import { IUsersTokensRepository } from '@modules/accounts/repositories/IUsersTok
 import { UsersTokensRepository } from '@modules/accounts/infra/typeorm/repositories/UsersTokensRepository';
 
 container.registerSingleton<ICategoriesRepository>(
-    "CategoriesRepository", CategoriesRepository
+  "CategoriesRepository", CategoriesRepository
 );
 
 container.registerSingleton<ISpecificationsRepository>(
-    "SpecificationsRepository", SpecificationsRepository
+  "SpecificationsRepository", SpecificationsRepository
 );
 
 container.registerSingleton<IUsersRepository>(
-    "UsersRepository", UsersRepository
+  "UsersRepository", UsersRepository
 );
 
 container.registerSingleton<ICarsRepository>(
-    "CarsRepository", CarsRepository
+  "CarsRepository", CarsRepository
 )
 
 container.registerSingleton<ICarsImagesRepository>(
-    "CarsImagesRepository", CarsImagesRepository
+  "CarsImagesRepository", CarsImagesRepository
 )
 
 container.registerSingleton<IRentalsRepository>(
-    "RentalsRepository", RentalsRepository
+  "RentalsRepository", RentalsRepository
 )
 
 container.registerSingleton<IUsersTokensRepository>(
