@@ -11,7 +11,7 @@ let dayjsDateProvider: DayjsDateProvider
 let carsRepositoryInMemory: CarsRepositoryInMemory
 
 describe("Create Rental", () => {
-    const dayAdd24Hours = dayjs().add(1, "day").toDate()
+    const dayAdd48Hours = dayjs().add(2, "day").toDate()
     beforeEach(() => {
       rentalsRepositoryInMemory = new RentalsRepositoryInMemory()
       dayjsDateProvider = new DayjsDateProvider()
@@ -37,7 +37,7 @@ describe("Create Rental", () => {
       const rental = await createRentalUseCase.execute({
         user_id: "123456",
         car_id: car.id,
-        expected_return_date: dayAdd24Hours
+        expected_return_date: dayAdd48Hours
       })
 
       expect(rental).toHaveProperty("id")
@@ -58,13 +58,13 @@ describe("Create Rental", () => {
       await createRentalUseCase.execute({
         user_id: "123",
         car_id: car.id,
-        expected_return_date: dayAdd24Hours
+        expected_return_date: dayAdd48Hours
       })
 
       await expect(createRentalUseCase.execute({
           user_id: "321",
           car_id: car.id,
-          expected_return_date: dayAdd24Hours
+          expected_return_date: dayAdd48Hours
       })).rejects.toEqual(new AppError("Car is unavailable"))
     })
 
@@ -92,13 +92,13 @@ describe("Create Rental", () => {
       await createRentalUseCase.execute({
         user_id: "123456",
         car_id: car.id,
-        expected_return_date: dayAdd24Hours
+        expected_return_date: dayAdd48Hours
       })
 
       await expect(createRentalUseCase.execute({
         user_id: "123456",
         car_id: car2.id,
-        expected_return_date: dayAdd24Hours
+        expected_return_date: dayAdd48Hours
       })).rejects.toEqual(new AppError("There's a rental in progress for user!"))
     })
 

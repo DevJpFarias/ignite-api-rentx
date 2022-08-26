@@ -8,7 +8,7 @@ import { Category } from '@modules/cars/infra/typeorm/entities/Category'
 
 let connection: DataSource
 
-describe('Create Category Controller', () => {
+describe('List Category Controller', () => {
   beforeAll(async () => {
     connection = await TestsDataSource.initialize()
   })
@@ -27,8 +27,8 @@ describe('Create Category Controller', () => {
 		//await connection.destroy()
 	})
 
-    it("should be able to create a new category", async () => {
-      const responseToken = await request(app).post("/sessions")
+  it('Should be able to list all categories', async () => {
+    const responseToken = await request(app).post("/sessions")
         .send({
           email: "admin@rentx.com.br",
           password: "admin",
@@ -37,25 +37,6 @@ describe('Create Category Controller', () => {
       const { refresh_token } = responseToken.body;
       
       //await connection.createQueryBuilder().delete().from(Category).execute()
-      const response = await request(app).post("/categories").send({
-        name: "Category Supertest",
-        description: "Category Supertest"
-      }).set({
-        Authorization: `Bearer ${refresh_token}`
-      })
-
-      expect(response.status).toBe(201);
-    });
-
-    it("should not be able to create a new category with existent name", async () => {
-      const responseToken = await request(app).post("/sessions")
-        .send({
-          email: "admin@rentx.com.br",
-          password: "admin",
-        });
-        
-      const { refresh_token } = responseToken.body;
-
       await request(app).post("/categories").send({
         name: "Category Supertest",
         description: "Category Supertest"
@@ -63,13 +44,9 @@ describe('Create Category Controller', () => {
         Authorization: `Bearer ${refresh_token}`
       })
 
-      const response = await request(app).post("/categories").send({
-        name: "Category Supertest",
-        description: "Category Supertest"
-      }).set({
-        Authorization: `Bearer ${refresh_token}`
-      })
+      const response = await request(app).get("/categories")
 
-      expect(response.status).toBe(400);
-    });
+      expect(response.status).toBe(200);
+      expect(response.body.length).toBe(1)
+  })
 })
