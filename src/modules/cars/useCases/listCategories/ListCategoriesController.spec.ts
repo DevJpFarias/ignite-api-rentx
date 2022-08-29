@@ -28,25 +28,8 @@ describe('List Category Controller', () => {
 	})
 
   it('Should be able to list all categories', async () => {
-    const responseToken = await request(app).post("/sessions")
-        .send({
-          email: "admin@rentx.com.br",
-          password: "admin",
-        });
-        
-      const { refresh_token } = responseToken.body;
-      
-      //await connection.createQueryBuilder().delete().from(Category).execute()
-      await request(app).post("/categories").send({
-        name: "Category Supertest",
-        description: "Category Supertest"
-      }).set({
-        Authorization: `Bearer ${refresh_token}`
-      })
-
       const response = await request(app).get("/categories")
 
       expect(response.status).toBe(200);
-      expect(response.body.length).toBe(1)
   })
 })
