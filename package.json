@@ -12,6 +12,7 @@
     "seed:admin-test": "cross-env NODE_ENV=test ts-node-dev -r tsconfig-paths/register src/shared/infra/typeorm/seed/admin.ts"
   },
   "dependencies": {
+    "aws-sdk": "^2.1209.0",
     "bcrypt": "^5.0.1",
     "csv-parse": "^4.16.0",
     "dayjs": "^1.10.7",
