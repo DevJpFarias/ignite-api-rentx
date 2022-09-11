@@ -41,7 +41,7 @@ class SendForgotPasswordMailUseCase {
 
     const variables = {
       name: user.name,
-      link: `http://localhost:3333/password/reset?token=${token}`,
+      link: `${process.env.FORGOT_MAIL_URL}${token}`,
     };
 
     await this.mailProvider.sendMail(email, "Recuperação de senha", variables, templatePath)
