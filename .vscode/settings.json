@@ -1,9 +1,0 @@
-{
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    },
-    "cSpell.words": [
-        "tsyringe",
-        "typeorm"
-    ]
-}
