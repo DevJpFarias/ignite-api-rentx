@@ -7,13 +7,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  # This workflow contains a single job called "build"
   build:
-  
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@master
 
       - name: Setup Nodejs
         uses: actions/setup-node@v3
@@ -31,6 +29,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           port: ${{ secrets.SSH_PORT }}
-          key: ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.SSH_KEY }} 
           source: "., !node_modules"
           target: "test"
