@@ -43,6 +43,7 @@ jobs:
           script: |
             cd ~/app/api_rentx
             yarn
+            yarn build
             docker-compose up -d database
             ./node_modules/.bin/typeorm migration:run -d dist/shared/infra/typeorn/connections/index.js
             pm2 restart rentx_api
