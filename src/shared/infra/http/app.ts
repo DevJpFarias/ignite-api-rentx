@@ -7,15 +7,16 @@ import swaggerFile from "../../../swagger.json";
 import { router } from "./routes";
 import { connection } from '../typeorm/helpers/connection-helper';
 import cors from 'cors'
-
 import "@shared/container";
-
 import { AppError } from '@shared/errors/AppError';
 import upload from '@config/upload';
+import rateLimiter from '@shared/infra/http/middlewares/rateLimiter'
 
 connection()
 
 const app = express();
+
+app.use(rateLimiter)
 
 app.use(express.json());
 
